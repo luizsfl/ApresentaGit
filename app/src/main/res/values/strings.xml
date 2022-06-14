@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ApresentaGit</string>
+    <string name="label_name">Nome do repositorio</string>
+    <string name="label_description">Description</string>
+    <string name="star_count">0</string>
+
+    <dimen name="layout_half_padding">8dp</dimen>
+    <dimen name="layout_padding">16dp</dimen>
+    <dimen name="layout_extra_padding">32dp</dimen>
+</resources>
