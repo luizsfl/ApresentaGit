@@ -25,7 +25,7 @@ class MainViewModel(private val listUserRepositorioUseCase:ListUserRepositoriesU
                 }
                 .catch {
                     _repo.postValue(State.Erro(it))
-                    Log.e("errott",it.toString())
+                   // Log.e("errott",it.toString())
                 }
                 .collect {
                     _repo.postValue(State.Sucess(it))

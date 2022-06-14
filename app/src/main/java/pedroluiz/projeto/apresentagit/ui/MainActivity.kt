@@ -7,7 +7,9 @@ import android.view.Menu
 import androidx.appcompat.widget.SearchView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import pedroluiz.projeto.apresentagit.R
+import pedroluiz.projeto.apresentagit.core.createDialog
 import pedroluiz.projeto.apresentagit.core.createProgressDialog
+import pedroluiz.projeto.apresentagit.core.hideSofkeyboard
 import pedroluiz.projeto.apresentagit.databinding.ActivityMainBinding
 import pedroluiz.projeto.apresentagit.presentation.MainViewModel
 
@@ -32,6 +34,9 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
              when(it){
                  MainViewModel.State.Loading -> {dialog.show()}
                  is MainViewModel.State.Erro -> {
+                     createDialog{
+                         setMessage(it.error.message)
+                     }.show()
                      dialog.dismiss()
                  }
                  is MainViewModel.State.Sucess -> {
@@ -54,6 +59,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         query?.let { viewModel.getRepoList(it) }
+        binding.root.hideSofkeyboard()
         return true
     }
 
