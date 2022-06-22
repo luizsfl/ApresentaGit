@@ -21,8 +21,6 @@ object DataModule {
 
     private fun networkModules(): Module {
 
-
-
         return module {
             single {
                 val interceptor = HttpLoggingInterceptor{
@@ -45,7 +43,6 @@ object DataModule {
             single {
                 createService<GitHubService>(get(),get())
             }
-
 
         }
     }

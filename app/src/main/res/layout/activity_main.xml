@@ -16,14 +16,25 @@
         app:title="App Repositorios"
         />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rc_repos"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srl_repos"
+        android:layout_width="441dp"
+        android:layout_height="678dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
-        tools:listitem="@layout/item_repo"
-        />
+        >
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rc_repos"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            tools:listitem="@layout/item_repo" />
+
+
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

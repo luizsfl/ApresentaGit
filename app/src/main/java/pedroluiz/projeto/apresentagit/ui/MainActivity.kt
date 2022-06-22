@@ -23,6 +23,9 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     private val adapter by lazy{ RepoListAdapter() }
 
+    private var textoInformado : String = ""
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -46,6 +49,14 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
              }
          }
 
+
+        binding.srlRepos.setOnRefreshListener {
+            if (textoInformado.isNotEmpty()) {
+                viewModel.getRepoList(textoInformado)
+            }
+            binding.srlRepos.isRefreshing = false
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -58,7 +69,11 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        query?.let { viewModel.getRepoList(it) }
+        query?.let {
+            viewModel.getRepoList(it)
+            textoInformado = it
+        }
+
         binding.root.hideSofkeyboard()
         return true
     }
